@@ -1,0 +1,22 @@
+{{#if loggedIn}}
+  <h2>Hello {{username}}!</h2>
+  <a href="/dashboard/{{id}}">DASHBOARD</a>
+{{else}}
+  <a href="/login">LOGIN</a>
+  <a href="/signup">SIGN UP</a>
+{{/if}}
+
+<ul class="list-group">
+  {{#each posts}}
+    <li class="list-group-item">
+      <div>
+        <a href="/post/{{id}}">{{title}}</a>
+        - created by
+        <span>{{user.username}}</span>
+        on
+        {{format_date createdAt}}
+        <span>{{commentsCount}}</span>
+      </div>
+    </li>
+  {{/each}}
+</ul>
