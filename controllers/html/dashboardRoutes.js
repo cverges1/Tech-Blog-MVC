@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
+
 
 // Render dashboard with all posts ever created by the user logged in
 // Endpoint is '/dashboard/:userId'
 // TODO: only authenticated users can access their dashboard
 // TODO: once we have set up our sessions, remove ':userId' from endpoint and get userId from req.sessions instead
-router.get('/:userId', async (req, res) => {
+router.get('/:userId', withAuth, async (req, res) => {
 	try {
 		const posts = await Post.findAll({
 			where: {
@@ -28,12 +30,14 @@ router.get('/:userId', async (req, res) => {
 		});
 		const serializedPosts = posts.map((post) => post.get({ plain: true }));
 
+		console.log(serializedPosts);
+
 		// TODO: modify response with actual VIEW|template
-		res
-			.status(200)
-			.send(
-				'<h1>DASHBOARD</h1><h2>Render the dashboard view along with all posts from logged in user.</h2>'
-			);
+		res.status(200).render('dashboard',{
+			posts: serializedPosts,
+			username: req.session.username,
+			loggedIn: req.session.loggedIn,
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(500).json(error);

@@ -1,0 +1,21 @@
+<div>
+  <a href="/post/{{post.id}}">{{post.title}}</a>
+  - created by
+  <span>{{post.user.username}}</span>
+  on
+</div>
+<ul>
+    <div>Comments</div>
+    {{#each comments}}
+        <li>
+            <div>
+                <span>{{title}}</span>
+                <span>{{text}}</span>
+				- created by
+				<span>{{user.username}}</span>
+				on
+				{{format_date createdAt}}
+            </div>
+        </li>
+    {{/each}}
+</ul>

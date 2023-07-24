@@ -24,6 +24,8 @@ router.get('/', async (req, res) => {
 		res.status(200).render('homepage', {
 			posts: serializedPosts,
 			loggedIn: req.session.loggedIn,
+			id: req.session.userId,
+			username: req.session.username,
 		});
 	} catch (error) {
 		console.log(error);
@@ -54,15 +56,17 @@ router.get('/post/:id', async (req, res) => {
 
 		if (!post) return res.status(404).json({ message: 'No post found.' });
 
-		post = post.get({ plain: true });
-		console.log(post);
+		const serializedPost = post.get({ plain: true });
+		console.log("posts",serializedPost);
+		console.log("comments",serializedPost.comments);
+
 
 		// TODO: modify response with actual VIEW|template
-		res
-			.status(200)
-			.send(
-				'<h1>SINGLE POST PAGE</h1><h2>Render the view for a single post along with the post retrieved.</h2>'
-			);
+		res.status(200).render( 'singlePost',{
+			post: serializedPost,
+			comments: serializedPost.comments,
+			loggedIn: req.session.loggedIn,
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(500).json(error);

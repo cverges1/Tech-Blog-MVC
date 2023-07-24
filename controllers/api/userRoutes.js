@@ -33,6 +33,23 @@ router.post('/', async (req, res) => {
 	}
 });
 
+// Route to get all users for testing
+//GET method end point '/api/users'
+router.get('/', async (req, res) => {
+	try {
+		// retrieve all existing users from the database
+		const users = await User.findAll({
+		  attributes: {
+			exclude: ["password"],
+		  },
+		});
+		res.status(200).json(users); // 200 - OK
+	  } catch (error) {
+		console.log(error);
+		res.status(500).json(error); // 500 - Internal Server Error
+	  }
+})
+
 // Route to retrieve logged in user's profile
 // GET method with endpoint '/api/users/profile'
 // Only authenticated users can retrieve their profile
@@ -150,6 +167,7 @@ router.post('/login', async (req, res) => {
 		req.session.save(() => {
 			// create session variables based on the logged in user
 			req.session.userId = user.id;
+			req.session.username = user.username;
 			req.session.loggedIn = true;
 			// send back response with 200 status code
 			res.status(200).json(user); // 200 - OK
