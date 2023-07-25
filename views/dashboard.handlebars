@@ -1,33 +1,16 @@
-<div>
-{{!-- {{#if loggedIn}}
-  <h2>Hello {{username}}!</h2>
-{{/if}} --}}
-
 <ul class="list-group">
   {{#each posts}}
     <li class="list-group-item">
-      <div>
-        <a href="/post/{{id}}">{{title}}</a>
-        - created on
-        {{format_date createdAt}}
-        <span>{{commentsCount}}</span>
+      <div class="d-flex w-100 justify-content-between">
+        <a href="/post/{{id}}"><h2>{{title}}</h2>
+          <span><h5>- created by
+              {{user.username}}
+              on
+              {{format_date createdAt}}</h5></span>
+        </a>
+        <small>{{commentsCount}} comments so far</small>
       </div>
+<a class="btn btn-primary" href="/dashboard/post/{{id}}" role="button">UPDATE/DELETE</a>
     </li>
   {{/each}}
 </ul>
-
-{{! <button id="popup-btn" type="click">NEW POST</button> }}
-
-<!-- Create hidden div to pop up new post on click -->
-<h2>Create New Post</h2>
-<form id="new-post">
-  <div>
-    <input id="title" class="form-control" type="text" placeholder="Title" />
-  </div>
-  <div>
-    <input id="text" class="form-control" type="text" placeholder="Text" />
-  </div>
-  <button type="submit">+</button>
-</form>
-</div>
-<script src="./js/post.js"></script>

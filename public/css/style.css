@@ -1,0 +1,50 @@
+* {
+    color:  rgb(251, 219, 131);
+    text-decoration: none;
+}
+
+header {
+  background-image: url(../assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg);
+  background-size: 70%;
+}
+
+footer {
+  background-image: url(../assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg);
+  background-size: 70%;
+  text-align: center;
+}
+
+.background {
+    background-color: rgb(22, 47, 77);
+ border: solid rgba(212, 212, 116, 0.782) 2px;
+ text-align: center;
+}
+
+.d-flex {
+ background-color: rgb(22, 47, 77);
+ border: solid rgba(212, 212, 116, 0.782) 2px;
+}
+
+#nav-links a,
+#greeting {
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#login-link {
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#post-id {
+  display: none;
+}
+
+#logout {
+  background: none;
+  border: none;
+  padding: 0;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  cursor: pointer;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}

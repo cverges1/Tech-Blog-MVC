@@ -1,21 +1,37 @@
-<div>
-  <a href="/post/{{post.id}}">{{post.title}}</a>
-  - created by
-  <span>{{post.user.username}}</span>
-  on
+<div class="background">
+  <h3>{{post.title}}</h3>
+            <div class="background h-25">
+                <p>{{post.text}}</p>
+				<p>- created by {{post.user.username}} on {{format_date post.createdAt}}</p>
+
+            </div>
 </div>
+<div class="background">
+{{#if loggedIn}}
+<form id="new-comment" class="background">
+    <div id="post-id" class="background">
+        {{post.id}}
+    </div>
+  <div class="background">
+    <input class="text form-control" type="text" placeholder="Comment" />
+  </div>
+  <button type="submit">+</button>
+</form>
+{{/if}}
 <ul>
-    <div>Comments</div>
+    <div>
+    <p class="background">Comments:</p>
     {{#each comments}}
         <li>
-            <div>
-                <span>{{title}}</span>
-                <span>{{text}}</span>
-				- created by
-				<span>{{user.username}}</span>
-				on
-				{{format_date createdAt}}
+            <div class="background h-25">
+                <p>{{text}}</p>
+				<p>- created by {{user.username}} on {{format_date createdAt}}</p>
             </div>
         </li>
     {{/each}}
+    </div>
 </ul>
+{{#if loggedIn}}
+<script src="/js/comment.js"></script>
+{{/if}}
+</div>

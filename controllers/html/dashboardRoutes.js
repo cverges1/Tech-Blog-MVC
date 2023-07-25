@@ -32,7 +32,6 @@ router.get('/:userId', withAuth, async (req, res) => {
 
 		console.log(serializedPosts);
 
-		// TODO: modify response with actual VIEW|template
 		res.status(200).render('dashboard',{
 			posts: serializedPosts,
 			username: req.session.username,
@@ -74,12 +73,16 @@ router.get('/post/:id', async (req, res) => {
 
 		post = post.get({ plain: true });
 
+		console.log(post)
+
 		// TODO: modify response with actual VIEW|template
 		res
 			.status(200)
-			.send(
-				'<h1>DASHBOARD</h1><h2>Render the dashboard view for a single post along with that post retrieved from the database.</h2>'
-			);
+			.render('dashboardSingle',{
+				post: post,
+				username: req.session.username,
+				loggedIn: req.session.loggedIn,
+			});
 	} catch (error) {
 		console.log(error);
 		res.status(500).json(error);
