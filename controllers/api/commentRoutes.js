@@ -5,7 +5,6 @@ const { Comment, User, Post } = require('../../models');
 // import helper function for authentication
 const withAuth = require('../../utils/auth');
 
-/***** CREATE *****/
 // Route to create a new comment
 // POST method with endpoint '/api/comments/'
 // test with: {"text": "This is the text for a new comment", "postId": 18}
@@ -18,6 +17,7 @@ router.post('/', withAuth, async (req, res) => {
 			postId: req.body.postId,
 			userId: req.session.userId,
 		});
+		console.log(newComment);
 		res.status(201).json(newComment); // 201 - Created
 	} catch (error) {
 		console.log(error);
@@ -25,7 +25,6 @@ router.post('/', withAuth, async (req, res) => {
 	}
 });
 
-/***** READ *****/
 // Route to retrieve all comments
 // GET method with endpoint '/api/comments/'
 router.get('/', async (req, res) => {
@@ -62,7 +61,6 @@ router.get('/:commentId', async (req, res) => {
 	}
 });
 
-/***** UPDATE *****/
 // Route to update a comment by id
 // PUT method with endpoint '/api/comments/:commentId'
 // test with: {"text": "This is the updated text for an existing comment"}
@@ -91,7 +89,6 @@ router.put('/:commentId', withAuth, async (req, res) => {
 	}
 });
 
-/***** DELETE *****/
 // Route to delete a comment by id
 // DELETE method with endpoint '/api/comments/:commentId'
 // Only authenticated users can delete their own comment

@@ -1,21 +1,13 @@
-{{#if loggedIn}}
-  <h2>Hello {{username}}!</h2>
-  <a href="/dashboard/{{id}}">DASHBOARD</a>
-{{else}}
-  <a href="/login">LOGIN</a>
-  <a href="/signup">SIGN UP</a>
-{{/if}}
+{{!-- <p>About: This is a blog for web developers</p> --}}
 
 <ul class="list-group">
   {{#each posts}}
-    <li class="list-group-item">
-      <div>
-        <a href="/post/{{id}}">{{title}}</a>
-        - created by
-        <span>{{user.username}}</span>
-        on
-        {{format_date createdAt}}
-        <span>{{commentsCount}}</span>
+    <li class="list-group-item p-0">
+      <div class="d-flex w-100 justify-content-between">
+        <a href="/post/{{id}}"><h2>{{title}}</h2>
+         <span><h5>- created by {{user.username}} on {{format_date createdAt}}</h5></span>
+        </a>
+        <small>{{commentsCount}} comments so far</small>
       </div>
     </li>
   {{/each}}

@@ -7,7 +7,6 @@ const { Post, User, Comment } = require('../../models');
 // import helper function for authentication
 const withAuth = require('../../utils/auth');
 
-/***** CREATE *****/
 // Route to create a new post
 // POST method with endpoint '/api/posts/'
 // test with: {"title": "Test title for a new post", "text": "This is the text for the new post"}
@@ -27,7 +26,6 @@ router.post('/', withAuth, async (req, res) => {
 	}
 });
 
-/***** READ - optional *****/
 // Route to retrieve all posts
 // GET method with endpoint '/api/posts/'
 router.get('/', async (req, res) => {
@@ -54,36 +52,6 @@ router.get('/', async (req, res) => {
 	}
 });
 
-// Route to retrieve a single post by id
-// GET method with endpoint '/api/posts/:postId'
-router.get('/:postId', async (req, res) => {
-	try {
-		// retrieve a single post by primary key - the post's id is passed via the endpoint parameter 'postId'
-		const post = await Post.findByPk(req.params.postId, {
-			include: [
-				{ model: User, attributes: ['username'] },
-				{ model: Comment, include: { model: User, attributes: ['username'] } },
-			],
-			attributes: {
-				include: [
-					// use plain SQL to get a count of the number of comments for each post
-					[
-						sequelize.literal(
-							'(SELECT COUNT(*) FROM comment WHERE comment.postId = post.id)'
-						),
-						'commentsCount',
-					],
-				],
-			},
-		});
-		res.status(200).json(post); // 200 - OK
-	} catch (error) {
-		console.log(error);
-		res.status(500).json(error); // 500 - Internal Server Error
-	}
-});
-
-/***** UPDATE *****/
 // Route to update a post by id
 // PUT method with endpoint '/api/posts/:postId'
 // test with any and all of: {"title": "Updated test title for a new post", "text": "This is the updated text for the new post"}
@@ -112,7 +80,6 @@ router.put('/:postId', withAuth, async (req, res) => {
 	}
 });
 
-/***** DELETE *****/
 // Route to delete a post by id
 // DELETE method with endpoint '/api/posts/:postId'
 // Only authenticated users can delete their own post
