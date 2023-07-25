@@ -17,7 +17,7 @@
   
   ## Usage
   
-  To use the application simply click on posts to see them in more detail. If you would like to comment or make a post yourself, navigate to the sign up button and enter your information. Now you will be able to comment, post and log back in whenever you would like. If you would like to update a delete one of your posts, navigate to the dashboard for those options.
+  To use the application simply click on posts to see them in more detail. If you would like to comment or make a post yourself, navigate to the sign up button and enter your information. Now you will be able to comment, post and log back in whenever you would like. If you would like to update or delete one of your posts, navigate to the dashboard for those options.
   
   ## Credits
   
