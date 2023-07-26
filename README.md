@@ -3,7 +3,14 @@
   ## Licensing: MIT [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   ## Description
   This project is a full stack application of a blog meant for developers.  The Web Development Tech Blog was created as a place for developers to post their thoughts and ideas in an effort to continue innovation.  This project was a great challenge in combing all the skills I have learned to this point. After completing this project I feel much more confident in my ability to design any full stack web app.
-  
+
+![ScreenShot](./public/assets/Untitled.png)
+![ScreenShot](./public/assets/Screenshot%202023-07-25%20at%205.21.54%20PM.png)
+![ScreenShot](./public/assets/Screenshot%202023-07-25%20at%205.22.06%20PM.png)
+
+Deployed Application: https://web-dev-tech-blog-a65171408830.herokuapp.com/
+
+
   ## Table of Contents
   
   -[Installation](#installation)
